@@ -73,8 +73,7 @@ function CadastroFormModal() {
     }).catch((err) => {
       console.log(err)
     })
-    
-    setFotoPerfil()
+
   }
 
 
@@ -106,7 +105,6 @@ function CadastroFormModal() {
               <Form.Group as={Col}>
                 <Button variant="secondary" onClick={enviaFoto}>enviar</Button>
               </Form.Group>
-              <img src={fotoPerfil} width='50'/>
             </Row>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">

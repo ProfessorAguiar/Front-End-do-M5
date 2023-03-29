@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios'
-
 function LoginFormModal() {
-  const [show, setShow] = useState(false);
 
+  const appContext = createContext(null)
+
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [nome, setNome] = useState('')
+
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [resp, setResp] = useState('')
@@ -40,14 +44,36 @@ function LoginFormModal() {
         setResposta(resp)
       }
     } else {
+
       setResposta('')
       setShow(false)
       setLogado(true)
-      setBotao('logout')
+      buscaNome()
     }
+
+
   }, [resp])
+
+  async function buscaNome() {
+    const r= await axios.get(`http://localhost:3000/usuario/email/${email}`)
+      // .then(function (response) {
+      //   console.log(response.data);
+      //   return (response.data[0].nome)
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
+      console.log(r)
+      const ret=await r.data[0].nome
+      console.log(ret)
+      setNome(buscaNome)
+      setBotao('logout')
+  }
   return (
     <>
+    <appContext.Provider value={{nome,setNome}}>
+      
+    </appContext.Provider>
       <Button variant="primary" size="sm" onClick={() => {
         if (!logado) {
           handleShow()

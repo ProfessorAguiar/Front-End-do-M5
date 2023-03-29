@@ -1,0 +1,10 @@
+.menu{
+  text-decoration:none;
+  color:#ffffff;
+  margin-left:1rem;
+  margin-right:0.5rem;
+  font-size:1.1rem;
+}
+.menu a:hover{
+  color:darkgray;
+}

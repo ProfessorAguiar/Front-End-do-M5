@@ -17,15 +17,12 @@ function InserirTec() {
   const [status, setStatus] = useState('')
   const [img, setImg] = useState('')
 
-  const Inserir = ((e) => {
-    e.preventDefault()
+  const Inserir = (() => {
     const hoje = new Date()
     const dia = hoje.getDate().toString().padStart(2, '0')
     const mes = String(hoje.getMonth() + 1).padStart(2, '0')
     const ano = hoje.getFullYear()
     const dataAtual = `${dia}/${mes}/${ano}`
-
-
     const tec = {
       titulo: tit,
       descricao: desc,
@@ -42,10 +39,11 @@ function InserirTec() {
       .catch(function (error) {
         console.log(error);
       });
+      setShow(false)
   })
   return (
     <>
-      <Container className="justify-content-md-center d-sm-flex" style={{marginTop:70}}>
+      <Container className="justify-content-md-center d-sm-flex" style={{ marginTop: 70 }}>
         <Col xs lg="10">
           <Row>
             <Button variant="secondary" onClick={handleShow}>
@@ -60,7 +58,7 @@ function InserirTec() {
           <Modal.Title>Inserir</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={(e) => { Inserir(e) }}>
+          <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Titulo:</Form.Label>
               <Form.Control type="text" onChange={(e) => setTit(e.target.value)} />
@@ -73,14 +71,13 @@ function InserirTec() {
             </Form.Group>
             <Form.Label>imagem:</Form.Label>
             <Form.Control type="text" onChange={(e) => setImg(e.target.value)} />
-            <Button type="submit" style={{ marginTop: 30, marginBottom: 50 }}>Inserir</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Fechar
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={Inserir}>
             Inserir
           </Button>
         </Modal.Footer>

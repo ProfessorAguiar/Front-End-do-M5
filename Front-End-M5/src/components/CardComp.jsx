@@ -30,7 +30,6 @@ function CardComp() {
                                     <Card.Text>
                                         {item.descricao}
                                     </Card.Text>
-                                    <Button variant="primary" style={{marginLeft:40,marginRight:40}}>Ler mais</Button>
                                     <ModalComp id={item.id_tecnologia} titulo={item.titulo} status={item.status} descricao={item.descricao} img={item.img}/>
                                 </Card.Body>
                             </Card>

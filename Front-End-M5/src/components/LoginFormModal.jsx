@@ -1,11 +1,11 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios'
+
 function LoginFormModal() {
 
-  const appContext = createContext(null)
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -71,9 +71,6 @@ function LoginFormModal() {
   }
   return (
     <>
-    <appContext.Provider value={{nome,setNome}}>
-      
-    </appContext.Provider>
       <Button variant="primary" size="sm" onClick={() => {
         if (!logado) {
           handleShow()
